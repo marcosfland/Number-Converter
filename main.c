@@ -40,6 +40,23 @@ void decimalToHexadecimal(int decimal) {
     printf("\n");
 }
 
+void decimalToOctal(int decimal) {
+    int octal[32];
+    int i = 0;
+
+    while (decimal > 0) {
+        octal[i] = decimal % 8;
+        decimal = decimal / 8;
+        i++;
+    }
+
+    printf("Octal: ");
+    for (int j = i - 1; j >= 0; j--) {
+        printf("%d", octal[j]);
+    }
+    printf("\n");
+}
+
 int binaryToDecimal(long long binary) {
     int decimal = 0;
     int base = 1;
@@ -79,8 +96,10 @@ int main() {
 
     printf("1. Decimal to Binary\n");
     printf("2. Decimal to Hexadecimal\n");
-    printf("3. Binary to Decimal\n");
-    printf("4. Hexadecimal to Decimal\n");
+    printf("3. Decimal to Octal\n");
+    printf("4. Binary to Decimal\n");
+    printf("5. Hexadecimal to Decimal\n");
+    printf("6. Octal to Decimal\n");
     printf("Enter your choice: ");
     scanf("%d", &choice);
 
@@ -96,13 +115,23 @@ int main() {
             decimalToHexadecimal(decimal);
             break;
         case 3:
+            printf("Enter a decimal number: ");
+            scanf("%d", &decimal);
+            decimalToOctal(decimal);
+            break;
+        case 4:
             printf("Enter a binary number: ");
             scanf("%lld", &binary);
             printf("Decimal: %d\n", binaryToDecimal(binary));
             break;
-        case 4:
+        case 5:
             printf("Enter a hexadecimal number: ");
             scanf("%s", hexadecimal);
+            printf("Decimal: %d\n", hexadecimalToDecimal(hexadecimal));
+            break;
+        case 6:
+            printf("Enter an octal number: ");
+            scanf("%s", hexadecimal); // Reusing hexadecimal array for octal input
             printf("Decimal: %d\n", hexadecimalToDecimal(hexadecimal));
             break;
         default:
